@@ -11,5 +11,30 @@
 
     <artifactId>mini-rpc-server</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.qakki</groupId>
+            <artifactId>mini-rpc-proto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qakki</groupId>
+            <artifactId>mini-rpc-transport</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qakki</groupId>
+            <artifactId>mini-rpc-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qakki</groupId>
+            <artifactId>mini-rpc-codec</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+    </dependencies>
 </project>

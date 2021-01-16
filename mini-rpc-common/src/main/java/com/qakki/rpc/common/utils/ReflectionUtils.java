@@ -32,6 +32,21 @@ public class ReflectionUtils {
      */
     public static Method[] getPublicMethods(Class<?> clazz) {
         Method[] methods = clazz.getDeclaredMethods();
-        return (Method[]) Arrays.stream(methods).filter(o -> Modifier.isPublic(o.getModifiers())).toArray();
+        return Arrays.stream(methods).filter(o -> Modifier.isPublic(o.getModifiers())).toArray(Method[]::new);
+    }
+
+    /**
+     * 调用方法
+     * @param object 对象
+     * @param method 方法
+     * @param args   参数
+     * @return 返回
+     */
+    public static Object invoke(Object object, Method method, Object... args) {
+        try {
+            return method.invoke(object, args);
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
