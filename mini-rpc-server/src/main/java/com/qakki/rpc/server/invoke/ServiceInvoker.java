@@ -13,11 +13,12 @@ public class ServiceInvoker {
 
     /**
      * 方法调用
+     *
      * @param instance 实例
      * @param request  请求
      * @return 返回
      */
-    public Object invoke(ServiceInstance instance, Request request) {
+    public static Object invoke(ServiceInstance instance, Request request) {
         return ReflectionUtils.invoke(instance.getTarget(), instance.getMethod(), request.getParameters());
     }
 

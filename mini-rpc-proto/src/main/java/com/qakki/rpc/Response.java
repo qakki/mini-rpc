@@ -4,11 +4,14 @@ import lombok.Data;
 
 /**
  * 返回
+ *
  * @author qakki
  * @date 2021/1/16 4:38 下午
  */
 @Data
 public class Response {
+
+    private String requestId;
 
     /**
      * 编码

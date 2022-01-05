@@ -1,8 +1,8 @@
 package com.qakki.rpc.transport;
 
 import com.qakki.rpc.Peer;
-
-import java.io.InputStream;
+import com.qakki.rpc.Request;
+import com.qakki.rpc.Response;
 
 /**
  * 客户端连接
@@ -13,7 +13,7 @@ public interface TransportClient {
 
     void connect(Peer peer);
 
-    InputStream write(InputStream data);
+    Response write(Request request);
 
     void close();
 

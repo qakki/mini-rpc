@@ -16,6 +16,7 @@
         <module>mini-rpc-client</module>
         <module>mini-rpc-transport</module>
         <module>mini-rpc-test</module>
+        <module>mini-rpc-registry</module>
     </modules>
 
     <properties>

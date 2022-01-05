@@ -16,14 +16,14 @@ public class Server {
         RpcServer server = new RpcServer(new RpcServerConfig());
         server.register(TestService.class, new TestServiceImpl());
         server.start();
-        
-        while (true) {
-            try {
-                server.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+
+//        while (true) {
+//            try {
+//                server.wait();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
 }

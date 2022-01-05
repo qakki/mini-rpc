@@ -6,7 +6,7 @@ import com.qakki.rpc.common.codec.Encoder;
 import com.qakki.rpc.common.codec.json.JSONDecoder;
 import com.qakki.rpc.common.codec.json.JSONEncoder;
 import com.qakki.rpc.transport.TransportClient;
-import com.qakki.rpc.transport.http.HTTPTransportClient;
+import com.qakki.rpc.transport.netty.NettyTransportClient;
 import lombok.Data;
 
 import java.util.Collections;
@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 public class RpcClientConfig {
 
-    private Class<? extends TransportClient> transportClass = HTTPTransportClient.class;
+    private Class<? extends TransportClient> transportClass = NettyTransportClient.class;
     private Class<? extends Encoder> encoderClass = JSONEncoder.class;
     private Class<? extends Decoder> decoderClass = JSONDecoder.class;
     private Class<? extends TransportSelector> selectorClass = RandomTransportSelector.class;

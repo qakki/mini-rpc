@@ -1,9 +1,12 @@
 package com.qakki.rpc.transport.http;
 
 import com.qakki.rpc.Peer;
+import com.qakki.rpc.Request;
+import com.qakki.rpc.Response;
 import com.qakki.rpc.transport.TransportClient;
 import org.apache.commons.io.IOUtils;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -24,9 +27,15 @@ public class HTTPTransportClient implements TransportClient {
     }
 
     @Override
-    public InputStream write(InputStream data) {
+    public Response write(Request request) {
+        return null;
+    }
+
+    //    @Override
+    public byte[] write(byte[] dataBytes) {
         HttpURLConnection httpUrlConnection = null;
         try {
+            ByteArrayInputStream data = new ByteArrayInputStream(dataBytes);
             httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setDoInput(true);
@@ -38,9 +47,11 @@ public class HTTPTransportClient implements TransportClient {
 
             int resultCode = httpUrlConnection.getResponseCode();
             if (resultCode == HttpURLConnection.HTTP_OK) {
-                return httpUrlConnection.getInputStream();
+                InputStream inputStream = httpUrlConnection.getInputStream();
+                return IOUtils.readFully(inputStream, inputStream.available());
             }
-            return httpUrlConnection.getErrorStream();
+            InputStream errorStream = httpUrlConnection.getErrorStream();
+            return IOUtils.readFully(errorStream, errorStream.available());
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }

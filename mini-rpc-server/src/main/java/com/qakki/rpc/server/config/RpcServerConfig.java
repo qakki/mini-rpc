@@ -5,7 +5,7 @@ import com.qakki.rpc.common.codec.Encoder;
 import com.qakki.rpc.common.codec.json.JSONDecoder;
 import com.qakki.rpc.common.codec.json.JSONEncoder;
 import com.qakki.rpc.transport.TransportServer;
-import com.qakki.rpc.transport.http.HTTPTransportServer;
+import com.qakki.rpc.transport.netty.NettyTransportServer;
 import lombok.Data;
 
 /**
@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 public class RpcServerConfig {
 
-    private Class<? extends TransportServer> transportClass = HTTPTransportServer.class;
+    private Class<? extends TransportServer> transportClass = NettyTransportServer.class;
     private Class<? extends Encoder> encoderClass = JSONEncoder.class;
     private Class<? extends Decoder> decoderClass = JSONDecoder.class;
     private int port = 3000;

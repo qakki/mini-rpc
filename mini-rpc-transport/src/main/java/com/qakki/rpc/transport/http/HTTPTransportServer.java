@@ -65,7 +65,7 @@ public class HTTPTransportServer implements TransportServer {
             OutputStream out = resp.getOutputStream();
 
             if (handler != null) {
-                handler.onRequest(in, out);
+                //handler.onRequest(in, out);
             }
             out.flush();
         }
