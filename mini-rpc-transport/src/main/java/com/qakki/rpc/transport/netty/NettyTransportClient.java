@@ -3,8 +3,8 @@ package com.qakki.rpc.transport.netty;
 import com.qakki.rpc.Peer;
 import com.qakki.rpc.Request;
 import com.qakki.rpc.Response;
-import com.qakki.rpc.common.codec.json.JSONDecoder;
-import com.qakki.rpc.common.codec.json.JSONEncoder;
+import com.qakki.rpc.common.codec.hessian.HessianDecoder;
+import com.qakki.rpc.common.codec.hessian.HessianEncoder;
 import com.qakki.rpc.transport.ResponseHandler;
 import com.qakki.rpc.transport.TransportClient;
 import io.netty.bootstrap.Bootstrap;
@@ -45,9 +45,9 @@ public class NettyTransportClient implements TransportClient {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         //添加编码器
-                        pipeline.addLast(new RpcEncoder(Request.class, new JSONEncoder()));
+                        pipeline.addLast(new RpcEncoder(Request.class, new HessianEncoder()));
                         //添加解码器
-                        pipeline.addLast(new RpcDecoder<Response>(Response.class, new JSONDecoder()));
+                        pipeline.addLast(new RpcDecoder<Response>(Response.class, new HessianDecoder()));
                         //请求处理类
                         pipeline.addLast(clientHandler);
                     }

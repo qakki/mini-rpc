@@ -2,8 +2,8 @@ package com.qakki.rpc.transport.netty;
 
 import com.qakki.rpc.Request;
 import com.qakki.rpc.Response;
-import com.qakki.rpc.common.codec.json.JSONDecoder;
-import com.qakki.rpc.common.codec.json.JSONEncoder;
+import com.qakki.rpc.common.codec.hessian.HessianDecoder;
+import com.qakki.rpc.common.codec.hessian.HessianEncoder;
 import com.qakki.rpc.transport.RequestHandler;
 import com.qakki.rpc.transport.TransportServer;
 import io.netty.bootstrap.ServerBootstrap;
@@ -56,8 +56,8 @@ public class NettyTransportServer implements TransportServer {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline pipeline = socketChannel.pipeline();
-                            pipeline.addLast(new RpcDecoder<>(Request.class, new JSONDecoder()));
-                            pipeline.addLast(new RpcEncoder(Response.class, new JSONEncoder()));
+                            pipeline.addLast(new RpcDecoder<>(Request.class, new HessianDecoder()));
+                            pipeline.addLast(new RpcEncoder(Response.class, new HessianEncoder()));
                             pipeline.addLast((SimpleChannelInboundHandler<Request>) handler);
                         }
                     });
